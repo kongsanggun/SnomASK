@@ -1,24 +1,42 @@
-import logo from './logo.svg';
+import { useEffect, useState } from 'react';
 import './App.css';
 
 function App() {
+
+  const [massage, setMassage] = useState([]);
+
+  async function getMessage() {
+    try {
+      let response = await fetch(`/message`);
+      const message = await response.json();
+      return message;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  function messageTest(tmp) {
+    const result = tmp.map((item) => {
+      return (
+        <div>{item.content}</div>
+      )
+    })
+    return result;
+  }
+
+  async function init() {
+    const messages = await getMessage();
+    setMassage(messages);
+}
+
+  useEffect(() => {
+    init();
+  }, [])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <><h1>get 테스트</h1><div>
+      {messageTest(massage)}
+    </div></>
   );
 }
 
