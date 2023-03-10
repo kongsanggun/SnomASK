@@ -4,14 +4,15 @@ function Messages(props) {
     const message = props.Data;
 
     function reqmes(reqm) {
+        // TODO : 메시지 클릭 시 답변이 나오게 한다.
         return(
-            <div className="my-6 bg-gray-200 rounded-md h-10 w-auto items-center"> {reqm} </div>
+            <div className="bg-gray-200 rounded-md h-10 px-5 w-auto max-w-md flex items-center"> {reqm} </div>
         )
     }
 
     function resmes(resm) {
         return(
-            <div className="my-6 bg-gray-400 rounded-md h-10 flex items-center"> {resm} </div>
+            <div className="bg-gray-400 rounded-md h-10 px-5 w-auto max-w-md flex items-center"> {resm} </div>
         )
     }
 
@@ -19,13 +20,14 @@ function Messages(props) {
         const result = tmp.map((item) => {
             if (item.type === "MEQ") {
                 return (
-                    <div className="h-auto w-auto text-right">
+                    <div className="my-6 h-10 w-full text-right flex justify-end">
+                        <div></div>
                         {reqmes(item.content)}
                     </div>
                   )
             }
             return (
-                <div className="h-auto w-auto text-left">
+                <div className="my-6 h-10 w-full text-left flex justify-start">
                     {resmes(item.content)}
                 </div>
               )
@@ -36,7 +38,7 @@ function Messages(props) {
 
     return (
         <>
-            <div className=" my-10 border-zinc-800 h-96 w-full bg-sky-100">
+            <div className="px-6 my-10 border-zinc-800 h-96 w-full rounded-sm">
                 {messages(message)}
             </div>
         </>
