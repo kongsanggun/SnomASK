@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import MessageHeader from '../compoment/messageHeader';
+import Messages from '../compoment/messages';
 import MessageInput from '../compoment/messageInput';
 
 function MessagePage() {
@@ -13,16 +14,7 @@ function MessagePage() {
         } catch (error) {
           console.log(error);
         }
-      }
-    
-      function messageTest(tmp) {
-        const result = tmp.map((item) => {
-          return (
-            <div>{item.content}</div>
-          )
-        })
-        return result;
-      }
+    }
     
       async function init() {
         const messages = await getMessage();
@@ -37,13 +29,7 @@ function MessagePage() {
     return (
         <body>
             <MessageHeader/>
-            
-            <div>
-                <div>
-                {messageTest(massage)}
-                </div>
-            </div>
-
+            <Messages Data={massage}/>
             <MessageInput/>
         </body>
 
