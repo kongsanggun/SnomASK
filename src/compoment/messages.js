@@ -26,6 +26,13 @@ function Messages(props) {
                     </div>
                   )
             }
+            if (item.type === "REQ") {
+                return (
+                    <div className="my-6 h-10 w-full text-left flex justify-start border border-red-30">
+                        {resmes(item.content)}
+                    </div>
+                  )
+            }
             return (
                 <div className="my-6 h-10 w-full text-left flex justify-start">
                     {resmes(item.content)}
@@ -38,7 +45,7 @@ function Messages(props) {
 
     return (
         <>
-            <div className="px-6 my-10 border-zinc-800 h-96 w-full rounded-sm">
+            <div className="px-6 my-10 border-zinc-800 min-h-[600px] h-auto w-full rounded-sm">
                 {messages(message)}
             </div>
         </>

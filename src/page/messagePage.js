@@ -27,11 +27,11 @@ function MessagePage() {
       }, [])
 
     return (
-        <body>
+        <div>
             <MessageHeader/>
             <Messages Data={massage}/>
             <MessageInput/>
-        </body>
+        </div>
 
     )
 }
