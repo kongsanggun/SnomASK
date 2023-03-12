@@ -1,9 +1,12 @@
 import { useEffect, useState, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 import MessageHeader from '../compoment/messageHeader';
 
 // TODO : 나중에 컴포먼트 별로 분리할 예정 데이터 import export 이슈가 있음
 
 function MessagePage() {
+    const navigate = useNavigate();
+
     const [massage, setMassage] = useState([]);
     const [types, setTypes] = useState('');
     const [input, setinput] = useState('');
@@ -34,6 +37,7 @@ function MessagePage() {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            "Authorization": `Bearer ${localStorage.getItem("token")}`,
           },
           body: JSON.stringify({
             requestId : types,
@@ -49,7 +53,17 @@ function MessagePage() {
       }
     }
     
+    function findToken() {
+      const token = localStorage.getItem('token');
+      
+      if (!token) {
+        navigate('/login');
+        return;
+      }
+    }
+
     async function init() {
+        findToken();
         const messages = await getMessage();
         setMassage(messages);
     }
