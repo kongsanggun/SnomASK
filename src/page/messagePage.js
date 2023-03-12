@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import MessageHeader from '../compoment/messageHeader';
 import Messages from '../compoment/messages';
+import NoMessage from '../compoment/noMessage'
 import MessageInput from '../compoment/messageInput';
 
 function MessagePage() {
@@ -29,7 +30,7 @@ function MessagePage() {
     return (
         <div>
             <MessageHeader/>
-            <Messages Data={massage}/>
+            { massage.length === 0 ? <NoMessage/> : <Messages Data={massage}/> }
             <MessageInput/>
         </div>
 
